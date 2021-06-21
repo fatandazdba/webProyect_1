@@ -1,0 +1,1328 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "apichatbot REST API",
+    "description": "apichatbot REST API operations",
+    "license": {
+      "name": "MIT License",
+      "url": "https://opensource.org/licenses/MIT"
+    },
+    "version": "0.1.0"
+  },
+  "host": "https://apichatbot-dev.upm.es",
+  "paths": {
+    "/api/chatbot/notasDeCorte": {
+      "get": {
+        "tags": [
+          "ChatBot"
+        ],
+        "summary": "Returns `Notas de corte`",
+        "operationId": "apiupm_get_notasDeCorte",
+        "parameters": [
+          {
+            "name": "cursoAcademico",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Curso académico en la que se solicita saber la nota de corte.",
+            "required": true
+          },
+          {
+            "name": "codigoTitulacion",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Código asociado a una Titulación para obtener los resultados del mismo.",
+            "required": true
+          },
+          {
+            "name": "cupo",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Tipo de cupo e.g: general, titulados, mayores de 25, mayores de 45, deportistas, discapacitados...",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/200_notaDeCorte_OK_Response"
+          },
+          "400": {
+            "$ref": "#/components/responses/400_notaDeCorte_ParameterMissing_Response"
+          },
+          "404": {
+            "$ref": "#/components/responses/404_notaDeCorte_NotFound_Response"
+          },
+          "500": {
+            "$ref": "#/components/responses/500_notaDeCorte_InternalServerError_Response"
+          }
+        },
+        "security": [
+          {
+            "UPM_API_Security": []
+          }
+        ]
+      }
+    },
+    "/api/chatbot/ponderacionMateria": {
+      "get": {
+        "tags": [
+          "ChatBot"
+        ],
+        "summary": "Returns `Ponderacion de una materia`",
+        "operationId": "apiupm_get_ponderacionMateria",
+        "parameters": [
+          {
+            "name": "codigoTitulacion",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Código asociado a una Titulación para obtener los resultados del mismo.",
+            "required": true
+          },
+          {
+            "name": "codigoMateria",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Código de la materia asociado de la cual se quiere saber su ponderación. ",
+            "required": true
+          },
+          {
+            "name": "cursoAcademico",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Curso académico. **Opcional**"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/200_ponderacionMateria_OK_Response"
+          },
+          "400": {
+            "$ref": "#/components/responses/400_ponderacionMateria_ParameterMissing_Response"
+          },
+          "404": {
+            "$ref": "#/components/responses/404_ponderacionMateria_NotFound_Response"
+          },
+          "500": {
+            "$ref": "#/components/responses/500_ponderacionMateria_InternalServerError_Response"
+          }
+        },
+        "security": [
+          {
+            "UPM_API_Security": []
+          }
+        ]
+      }
+    },
+    "/api/chatbot/grados": {
+      "get": {
+        "tags": [
+          "ChatBot"
+        ],
+        "summary": "Returns `Grados`",
+        "operationId": "apiupm_get_grados",
+        "parameters": [
+          {
+            "name": "cursoAcademico",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Curso Académico.",
+            "required": true
+          },
+          {
+            "name": "codigoCentro",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Código del centro donde se imparten los grados."
+          },
+          {
+            "name": "codigoRama",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Código de la rama de conocimiento donde se imparten los grados."
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/200_grados_OK_Response"
+          },
+          "400": {
+            "$ref": "#/components/responses/400_grados_ParameterMissing_Response"
+          },
+          "404": {
+            "$ref": "#/components/responses/404_grados_NotFound_Response"
+          },
+          "500": {
+            "$ref": "#/components/responses/500_grados_InternalServerError_Response"
+          }
+        },
+        "security": [
+          {
+            "UPM_API_Security": []
+          }
+        ]
+      }
+    },
+    "/api/chatbot/centros": {
+      "get": {
+        "tags": [
+          "ChatBot"
+        ],
+        "summary": "Returns `Centros`",
+        "operationId": "apiupm_get_centros",
+        "parameters": [
+          {
+            "name": "codigoCentro",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Código del centro a buscar.",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/200_centros_OK_Response"
+          },
+          "400": {
+            "$ref": "#/components/responses/400_centros_ParameterMissing_Response"
+          },
+          "404": {
+            "$ref": "#/components/responses/404_centros_NotFound_Response"
+          },
+          "500": {
+            "$ref": "#/components/responses/500_centros_InternalServerError_Response"
+          }
+        },
+        "security": [
+          {
+            "UPM_API_Security": []
+          }
+        ]
+      }
+    },
+    "/api/chatbot/citaLlamamientos": {
+      "get": {
+        "tags": [
+          "ChatBot"
+        ],
+        "summary": "Returns `Cita llamamientos`",
+        "operationId": "apiupm_get_citaLlamamientos",
+        "parameters": [
+          {
+            "name": "dni",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "DNI del alumno en cuestión.",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/200_citaLlamamientos_OK_Response"
+          },
+          "400": {
+            "$ref": "#/components/responses/400_citaLlamamientos_ParameterMissing_Response"
+          },
+          "404": {
+            "$ref": "#/components/responses/404_citaLlamamientos_NotFound_Response"
+          },
+          "500": {
+            "$ref": "#/components/responses/500_citaLlamamientos_InternalServerError_Response"
+          }
+        },
+        "security": [
+          {
+            "UPM_API_Security": []
+          }
+        ]
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://apichatbot-dev.upm.es"
+    }
+  ],
+  "components": {
+    "parameters": {
+      "userId": {
+        "name": "userId",
+        "in": "path",
+        "description": "ID of user",
+        "required": true,
+        "schema": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "resultId": {
+        "name": "resultId",
+        "in": "path",
+        "description": "ID of result",
+        "required": true,
+        "schema": {
+          "type": "integer",
+          "format": "int11"
+        }
+      }
+    },
+    "responses": {
+      "200_notaDeCorte_OK_Response": {
+        "description": "Notas de corte",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/notasDeCorteMessage200"
+            }
+          }
+        }
+      },
+      "400_notaDeCorte_ParameterMissing_Response": {
+        "description": "`Parameter` is missing",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/notasDeCorteMessage400"
+            }
+          }
+        }
+      },
+      "401_notaDeCorte_Unauthorized_Response": {
+        "description": "`Unauthorized` invalid `token` header",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/notasDeCorteMessage401"
+            }
+          }
+        }
+      },
+      "403_notaDeCorte_Forbidden_Response": {
+        "description": "`Forbidden` You don't have permission to access",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/notasDeCorteMessage403"
+            }
+          }
+        }
+      },
+      "404_notaDeCorte_NotFound_Response": {
+        "description": "`Not found` resource not found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/notasDeCorteMessage404"
+            }
+          }
+        }
+      },
+      "500_notaDeCorte_InternalServerError_Response": {
+        "description": "`Internal Server Error`",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/notasDeCorteMessage500"
+            }
+          }
+        }
+      },
+
+      "200_ponderacionMateria_OK_Response": {
+        "description": "Ponderacion de una materia",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ponderacionMateriaMessage200"
+            }
+          }
+        }
+      },
+      "400_ponderacionMateria_ParameterMissing_Response": {
+        "description": "`Parameter` is missing",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ponderacionMateriaMessage400"
+            }
+          }
+        }
+      },
+      "401_ponderacionMateria_Unauthorized_Response": {
+        "description": "`Unauthorized` invalid `token` header",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ponderacionMateriaMessage401"
+            }
+          }
+        }
+      },
+      "403_ponderacionMateria_Forbidden_Response": {
+        "description": "`Forbidden` You don't have permission to access",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ponderacionMateriaMessage403"
+            }
+          }
+        }
+      },
+      "404_ponderacionMateria_NotFound_Response": {
+        "description": "`Not found` resource not found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ponderacionMateriaMessage404"
+            }
+          }
+        }
+      },
+      "500_ponderacionMateria_InternalServerError_Response": {
+        "description": "`Internal Server Error`",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ponderacionMateriaMessage500"
+            }
+          }
+        }
+      },
+
+      "200_listadoMateriasPonderadas_OK_Response": {
+        "description": "Listado de materias ponderables",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/listadoMateriasPonderadasMessage200"
+            }
+          }
+        }
+      },
+      "400_listadoMateriasPonderadas_ParameterMissing_Response": {
+        "description": "`Parameter` is missing",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/listadoMateriasPonderadasMessage400"
+            }
+          }
+        }
+      },
+      "401_listadoMateriasPonderadas_Unauthorized_Response": {
+        "description": "`Unauthorized` invalid `token` header",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/listadoMateriasPonderadasMessage401"
+            }
+          }
+        }
+      },
+      "403_listadoMateriasPonderadas_Forbidden_Response": {
+        "description": "`Forbidden` You don't have permission to access",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/listadoMateriasPonderadasMessage403"
+            }
+          }
+        }
+      },
+      "404_listadoMateriasPonderadase_NotFound_Response": {
+        "description": "`Not found` resource not found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/listadoMateriasPonderadasMessage404"
+            }
+          }
+        }
+      },
+      "500_listadoMateriasPonderadas_InternalServerError_Response": {
+        "description": "`Internal Server Error`",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/listadoMateriasPonderadasMessage500"
+            }
+          }
+        }
+      },
+
+      "200_grados_OK_Response": {
+        "description": "Grados",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/gradosMessage200"
+            }
+          }
+        }
+      },
+      "400_grados_ParameterMissing_Response": {
+        "description": "`Parameter` is missing",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/gradosMessage404"
+            }
+          }
+        }
+      },
+      "401_grados_Unauthorized_Response": {
+        "description": "`Unauthorized` invalid `token` header",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/gradosMessage401"
+            }
+          }
+        }
+      },
+      "403_grados_Forbidden_Response": {
+        "description": "`Forbidden` You don't have permission to access",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/gradosMessage403"
+            }
+          }
+        }
+      },
+      "404_grados_NotFound_Response": {
+        "description": "`Not found` resource not found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/gradosMessage404"
+            }
+          }
+        }
+      },
+      "500_grados_InternalServerError_Response": {
+        "description": "`Internal Server Error`",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/gradosMessage500"
+            }
+          }
+        }
+      },
+
+      "200_centros_OK_Response": {
+        "description": "Centro",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/centrosMessage200"
+            }
+          }
+        }
+      },
+      "400_centros_ParameterMissing_Response": {
+        "description": "`Parameter` is missing",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/centrosMessage400"
+            }
+          }
+        }
+      },
+      "401_centros_Unauthorized_Response": {
+        "description": "`Unauthorized` invalid `token` header",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/centrosMessage401"
+            }
+          }
+        }
+      },
+      "403_centros_Forbidden_Response": {
+        "description": "`Forbidden` You don't have permission to access",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/centrosMessage403"
+            }
+          }
+        }
+      },
+      "404_centros_NotFound_Response": {
+        "description": "`Not found` resource not found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/centrosMessage404"
+            }
+          }
+        }
+      },
+      "500_centros_InternalServerError_Response": {
+        "description": "`Internal Server Error`",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/centrosMessage500"
+            }
+          }
+        }
+      },
+
+      "200_citaLlamamientos_OK_Response": {
+        "description": "Cita llamamientos",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/citaLlamamientosMessage200"
+            }
+          }
+        }
+      },
+      "400_citaLlamamientos_ParameterMissing_Response": {
+        "description": "`Parameter` is missing",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/citaLlamamientosMessage400"
+            }
+          }
+        }
+      },
+      "401_citaLlamamientos_Unauthorized_Response": {
+        "description": "`Unauthorized` invalid `token` header",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/citaLlamamientosMessage401"
+            }
+          }
+        }
+      },
+      "403_citaLlamamientos_Forbidden_Response": {
+        "description": "`Forbidden` You don't have permission to access",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/citaLlamamientosMessage403"
+            }
+          }
+        }
+      },
+      "404_citaLlamamientos_NotFound_Response": {
+        "description": "`Not found` resource not found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/citaLlamamientosMessage404"
+            }
+          }
+        }
+      },
+      "500_citaLlamamientos_InternalServerError_Response": {
+        "description": "`Internal Server Error`",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/citaLlamamientosMessage500"
+            }
+          }
+        }
+      }
+
+
+    },
+    "securitySchemes": {
+      "UPM_API_Security": {
+        "type": "apiKey",
+        "name": "api-key",
+        "in": "header"
+      }
+    },
+    "schemas": {
+      "notasDeCorteMessage200": {
+        "required": [
+          "cursoAcademico",
+          "codigoTitulacion",
+          "cupo"
+        ],
+        "example": {
+          "data": {
+            "codigoResultado": "200",
+            "descripcionResultado": "Listado OK",
+            "parametros": {
+              "codigoTitulacion": "003",
+              "cursoAcademico": "2018",
+              "cupo": "G"
+            },
+            "respuesta": {
+              "nota": "10",
+              "anyo": "2018",
+              "nombreTitulacion": "Grado en Bellas Artes",
+              "convocatoria": "Junio"
+            }
+          },
+          "status": 200
+        }
+      },
+      "notasDeCorteMessage400": {
+        "example": {
+          "data": {
+            "codigoResultado": "400",
+            "descripcionResultado": "La titulación de preinscripción es un parámetro requerido",
+            "parametros": {
+              "cursoAcademico": "2018",
+              "codigoTitulacion": null,
+              "cupo": "G"
+            },
+            "respuesta": null
+          },
+          "status": 400
+        }
+      },
+      "notasDeCorteMessage401": {
+        "example": {
+          "data": {
+            "codigoResultado": "401",
+            "descripcionResultado": "Unauthorized invalid token header",
+            "parametros": {
+              "cursoAcademico": "2018",
+              "codigoTitulacion": "003",
+              "codigoMateria": "01"
+            },
+            "respuesta": null
+          },
+          "status": 401
+        }
+      },
+      "notasDeCorteMessage403": {
+        "example": {
+          "data": {
+            "codigoResultado": "403",
+            "descripcionResultado": "Forbidden You don't have permission to access",
+            "parametros": {
+              "cursoAcademico": "2018",
+              "codigoTitulacion": "003",
+              "codigoMateria": "01"
+            },
+            "respuesta": null
+          },
+          "status": 403
+        }
+      },
+      "notasDeCorteMessage404": {
+        "example": {
+          "data": {
+            "codigoResultado": "404",
+            "descripcionResultado": "No se han encontrado datos para esta petición",
+            "parametros": {
+              "cursoAcademico": "2018",
+              "codigoTitulacion": "2434",
+              "cupo": "G"
+            },
+            "respuesta": null
+          },
+          "status": 404
+        }
+      },
+      "notasDeCorteMessage500": {
+        "example": {
+          "data": {
+            "codigoResultado": "500",
+            "descripcionResultado": "Error en el servidor",
+            "parametros": {
+              "cursoAcademico": "2018",
+              "codigoTitulacion": "003",
+              "codigoMateria": "01"
+            },
+            "respuesta": null
+          },
+          "status": 500
+        }
+      },
+
+      "ponderacionMateriaMessage200": {
+        "example": {
+          "data": {
+            "codigoResultado": "200",
+            "descripcionResultado": "Listado OK",
+            "parametros": {
+              "codigoTitulacion": "003",
+              "codigoMateria": "01"
+            },
+            "respuesta": {
+              "nombreTitulacion":"Grado en Bellas Artes",
+              "nombreMateria":"Dibujo",
+              "valorPonderacion": "0.2"
+            }
+          },
+          "status": 200
+        }
+      },
+      "ponderacionMateriaMessage400": {
+        "example": {
+          "data": {
+            "codigoResultado": "400",
+            "descripcionResultado": "La titulación de preinscripción es un parámetro requerido",
+            "parametros": {
+              "codigoTitulacion": null,
+              "codigoMateria": "01"
+            },
+            "respuesta": null
+          },
+          "status": 400
+        }
+      },
+      "ponderacionMateriaMessage401": {
+        "example": {
+          "data": {
+            "codigoResultado": "401",
+            "descripcionResultado": "Unauthorized invalid token header",
+            "parametros": {
+              "cursoAcademico": "2018",
+              "codigoTitulacion": "003",
+              "codigoMateria": "01"
+            },
+            "respuesta": null
+          },
+          "status": 401
+        }
+      },
+      "ponderacionMateriaMessage403": {
+        "example": {
+          "data": {
+            "codigoResultado": "403",
+            "descripcionResultado": "Forbidden You don't have permission to access",
+            "parametros": {
+              "cursoAcademico": "2018",
+              "codigoTitulacion": "003",
+              "codigoMateria": "01"
+            },
+            "respuesta": null
+          },
+          "status": 403
+        }
+      },
+      "ponderacionMateriaMessage404": {
+        "example": {
+          "data": {
+            "codigoResultado": "404",
+            "descripcionResultado": "No se han encontrado datos para esa petición",
+            "parametros": {
+              "codigoTitulacion": "222",
+              "codigoMateria": "01"
+            },
+            "respuesta": null
+          },
+          "status": 404
+        }
+      },
+      "ponderacionMateriaMessage500": {
+        "example": {
+          "data": {
+            "codigoResultado": "500",
+            "descripcionResultado": "Error en el servidor",
+            "parametros": {
+              "cursoAcademico": "2018",
+              "codigoTitulacion": "003",
+              "codigoMateria": "01"
+            },
+            "respuesta": null
+          },
+          "status": 500
+        }
+      },
+
+      "listadoMateriasPonderadasMessage200": {
+        "example": {
+          "data": {
+            "codigoResultado":"200",
+            "descripcionResultado":"Listado OK",
+            "parametros":{
+              "codigoTitulacion":"206"
+            },
+            "respuesta":{
+              "nombreTitulacion":"Grado en Bellas Artes" ,
+              "materias":[ "Dibujo", "Historia del Arte" ]
+            }
+          },
+          "status": 200
+        }
+      },
+      "listadoMateriasPonderadasMessage400": {
+        "example": {
+          "data": {
+            "codigoResultado": "400",
+            "descripcionResultado": "La titulación de preinscripción es un parámetro requerido",
+            "parametros": {
+              "codigoTitulacion": null,
+              "cursoAcademico": "2018"
+            },
+            "respuesta": null
+          },
+          "status": 400
+        }
+      },
+      "listadoMateriasPonderadasMessage401": {
+        "example": {
+          "data": {
+            "codigoResultado": "401",
+            "descripcionResultado": "Unauthorized invalid token header",
+            "parametros": {
+              "cursoAcademico": "2018",
+              "codigoTitulacion": "003"
+            },
+            "respuesta": null
+          },
+          "status": 401
+        }
+      },
+      "listadoMateriasPonderadasMessage403": {
+        "example": {
+          "data": {
+            "codigoResultado": "403",
+            "descripcionResultado": "Forbidden You don't have permission to access",
+            "parametros": {
+              "cursoAcademico": "2018",
+              "codigoTitulacion": "003"
+            },
+            "respuesta": null
+          },
+          "status": 403
+        }
+      },
+      "listadoMateriasPonderadasMessage404": {
+        "example": {
+          "data": {
+            "codigoResultado": "404",
+            "descripcionResultado": "No se han encontrado datos para esa petición",
+            "parametros": {
+              "codigoTitulacion": "222"
+            },
+            "respuesta": null
+          },
+          "status": 404
+        }
+      },
+      "listadoMateriasPonderadasMessage500": {
+        "example": {
+          "data": {
+            "codigoResultado": "500",
+            "descripcionResultado": "Error en el servidor",
+            "parametros": {
+              "cursoAcademico": "2018",
+              "codigoTitulacion": "003"
+            },
+            "respuesta": null
+          },
+          "status": 500
+        }
+      },
+
+      "gradosMessage200": {
+        "example": {
+          "Data_RamaconocimientoYCursoacademico": {
+            "data": {
+              "codigoResultado": "200",
+              "descripcionResultado": "Listado OK",
+              "parametros": {
+                "codigoRama": "T",
+                "cursoAcademico": "2018"
+              },
+              "respuesta": {
+                "nombreRama": "Ingeniería y Arquitectura",
+                "listaTitulaciones": [
+                  {
+                    "codigoTitulacion": "191",
+                    "nombreTitulacion": "Grado en Ingeniería de Sistemas de Telecomunicación, Sonido e Imagen",
+                    "codigoRama": "T",
+                    "codigoCentros": [
+                      "130A"
+                    ]
+                  },
+                  {
+                    "codigoTitulacion": "192",
+                    "nombreTitulacion": "Grado en Administración y Dirección de Empresas",
+                    "codigoRama": "T",
+                    "codigoCentros": [
+                      "120C",
+                      "140A"
+                    ]
+                  }
+                ]
+              }
+            },
+            "status": 200
+          },
+          "Data_CursoacademicoYCodigoCentro": {
+            "data": {
+              "codigoResultado": "200",
+              "descripcionResultado": "Listado OK",
+              "parametros": {
+                "codigoCentro": "130A",
+                "cursoAcademico": "2018"
+              },
+              "respuesta": {
+                "centro": "Facultad de Bellas Artes",
+                "listaTitulaciones": [
+                  {
+                    "codigoTitulacion": "192",
+                    "nombreTitulacion": "Grado en Administración y Dirección de Empresas",
+                    "codigoRama": "T",
+                    "codigoCentros": [
+                      "130A",
+                      "130B"
+                    ]
+                  },
+                  {
+                    "codigoTitulacion": "193",
+                    "nombreTitulacion": "Grado en Bellas Artes",
+                    "codigoRama": "B",
+                    "codigoCentros": [
+                      "130A"
+                    ]
+                  }
+                ]
+              }
+            },
+            "status": 200
+          },
+          "Data_CursoAcademico": {
+            "data": {
+              "codigoResultado": "200",
+              "descripcionResultado": "Listado OK",
+              "parametros": {
+                "cursoAcademico": "2018"
+              },
+              "respuesta": {
+                "listaTitulaciones": [
+                  {
+                    "codigoTitulacion": "191",
+                    "nombreTitulacion": "Grado en Ingeniería de Sistemas de Telecomunicación, Sonido e Imagen",
+                    "codigoRama": "T",
+                    "codigoCentros": [
+                      "130A"
+                    ]
+                  },
+                  {
+                    "codigoTitulacion": "192",
+                    "nombreTitulacion": "Grado en Administración y Dirección de Empresas",
+                    "codigoRama": "T",
+                    "codigoCentros": [
+                      "130B",
+                      "160C"
+                    ]
+                  },
+                  {
+                    "codigoTitulacion": "193",
+                    "nombreTitulacion": "Grado en Bellas Artes",
+                    "codigoRama": "B",
+                    "codigoCentros": [
+                      "120A"
+                    ]
+                  }
+                ]
+              }
+            },
+            "status": 200
+          }
+        }
+      },
+      "gradosMessage400": {
+        "example": {
+          "data": {
+            "codigoResultado": "400",
+            "descripcionResultado": "El curso académico es un parámetro requerido",
+            "parametros": {
+              "cursoAcademico": null
+            },
+            "respuesta": null
+          },
+          "status": 400
+        }
+      },
+      "gradosMessage401": {
+        "example": {
+          "data": {
+            "codigoResultado": "401",
+            "descripcionResultado": "Unauthorized invalid token header",
+            "parametros": {
+              "cursoAcademico": "2018",
+              "codigoTitulacion": "185",
+              "codigoRama": "T"
+            },
+            "respuesta": null
+          },
+          "status": 401
+        }
+      },
+      "gradosMessage403": {
+        "example": {
+          "data": {
+            "codigoResultado": "403",
+            "descripcionResultado": "Forbidden You don't have permission to access",
+            "parametros": {
+              "cursoAcademico": "2018",
+              "codigoTitulacion": "185",
+              "codigoRama": "T"
+            },
+            "respuesta": null
+          },
+          "status": 403
+        }
+      },
+      "gradosMessage404": {
+        "example": {
+          "data": {
+            "codigoResultado": "404",
+            "descripcionResultado": "No se han encontrado datos para esa petición",
+            "parametros": {
+              "cursoAcademico": "2018",
+              "codigoCentro": "540A",
+              "codigoRama": "T"
+            },
+            "respuesta": null
+          },
+          "status": 404
+        }
+      },
+      "gradosMessage500": {
+        "example": {
+          "data": {
+            "codigoResultado": "500",
+            "descripcionResultado": "Error en el servidor",
+            "parametros": {
+              "cursoAcademico": "2018",
+              "codigoTitulacion": "185",
+              "codigoRama": "T"
+            },
+            "respuesta": null
+          },
+          "status": 500
+        }
+      },
+
+      "centrosMessage200": {
+        "example": {
+          "data": {
+            "codigoResultado": "200",
+            "descripcionResultado": "Listado OK",
+            "parametros": {
+              "codigoCentro": "130A"
+            },
+            "respuesta": {
+              "codigo": "130A",
+              "nombreCampus": "Olivo",
+              "codigoPostal": "03540",
+              "direccion": "Camino del olivo, s/n 03540 Alicante",
+              "email": "email@email.com",
+              "telefono": "900200200",
+              "localizacion": {
+                "latitud": 0,
+                "longitud": 0
+              },
+              "nombre": "Escuela Técnica Superior de Ingeniería Industrial",
+              "nombreCorto": "E.T.S. de Ingeniería Industrial",
+              "paginaWeb": "https://www.paginawebdelcentro",
+              "edificio": "5F",
+              "urlEdificio": "https://urldelmapa",
+              "universidad": {
+                "codigo": "27",
+                "nombre": "Universidad de Alicante",
+                "publica": "S"
+              }
+            }
+          },
+          "status": 200
+        }
+      },
+      "centrosMessage400": {
+        "example": {
+          "data": {
+            "codigoResultado": "400",
+            "descripcionResultado": "El código de centro es un parámetro requerido",
+            "parametros": {
+              "codigoCentro": null
+            },
+            "respuesta": null
+          },
+          "status": 400
+        }
+      },
+      "centrosMessage401": {
+        "example": {
+          "data": {
+            "codigoResultado": "401",
+            "descripcionResultado": "Unauthorized invalid token header",
+            "parametros": {
+              "codigoCentro": "130A"
+            },
+            "respuesta": null
+          },
+          "status": 401
+        }
+      },
+      "centrosMessage403": {
+        "example": {
+          "data": {
+            "codigoResultado": "403",
+            "descripcionResultado": "Forbidden You don't have permission to access",
+            "parametros": {
+              "codigoCentro": "130A"
+            },
+            "respuesta": null
+          },
+          "status": 403
+        }
+      },
+      "centrosMessage404": {
+        "example": {
+          "data": {
+            "codigoResultado": "404",
+            "descripcionResultado": "No se han encontrado datos para esa petición",
+            "parametros": {
+              "codigoCentro": "540A"
+            },
+            "respuesta": null
+          },
+          "status": 404
+        }
+      },
+      "centrosMessage500": {
+        "example": {
+          "data": {
+            "codigoResultado": "500",
+            "descripcionResultado": "Error en el servidor",
+            "parametros": {
+              "codigoCentro": "130A"
+            },
+            "respuesta": null
+          },
+          "status": 500
+        }
+      },
+
+      "citaLlamamientosMessage200": {
+        "example": {
+          "codigoResultado":"200",
+          "descripcionResultado":"Listado OK",
+          "parametros":{
+            "dni":"00000000"
+          },
+          "respuesta":[
+            {
+              "fecha":"21/09/2018",
+              "hora":"11:30",
+              "lista":"2",
+              "lugar":"CSU",
+              "localizacion": {
+                "latitud": 0,
+                "longitud": 0
+              },
+              "direccion": "Camino del olivo, s/n 03540 Alicante"
+            },
+            {
+              "fecha":"21/09/2018",
+              "hora":"13:30",
+              "lista":"3",
+              "lugar":"Centro Social Universitario",
+              "localizacion": {
+                "latitud": 0,
+                "longitud": 0
+              },
+              "direccion": "Camino del olivo, s/n 03540 Alicante"
+            }
+          ]
+        }
+      },
+      "citaLlamamientosMessage400": {
+        "example": {
+          "data": {
+            "codigoResultado": "400",
+            "descripcionResultado": "El dni es un parámetro requerido",
+            "parametros": {
+              "dni": null
+            },
+            "respuesta": null
+          },
+          "status": 400
+        }
+      },
+      "citaLlamamientosMessage401": {
+        "example": {
+          "data": {
+            "codigoResultado": "401",
+            "descripcionResultado": "Unauthorized invalid token header",
+            "parametros": {
+              "dni": "00000000"
+            },
+            "respuesta": null
+          },
+          "status": 401
+        }
+      },
+      "citaLlamamientosMessage403": {
+        "example": {
+          "data": {
+            "codigoResultado": "403",
+            "descripcionResultado": "Forbidden You don't have permission to access",
+            "parametros": {
+              "dni": "00000000"
+            },
+            "respuesta": null
+          },
+          "status": 403
+        }
+      },
+      "citaLlamamientosMessage404": {
+        "example": {
+          "data": {
+            "codigoResultado": "404",
+            "descripcionResultado": "No se han encontrado datos para esa petición",
+            "parametros": {
+              "dni": "00000001"
+            },
+            "respuesta": null
+          },
+          "status": 404
+        }
+      },
+      "citaLlamamientosMessage500": {
+        "example": {
+          "data": {
+            "codigoResultado": "500",
+            "descripcionResultado": "Error en el servidor",
+            "parametros": {
+              "dni": "00000000"
+            },
+            "respuesta": null
+          },
+          "status": 500
+        }
+      }
+    }
+  }
+}
