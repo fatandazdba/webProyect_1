@@ -28,5 +28,22 @@ class Product
      */
     private $quantity;
 
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function getQuantity(): ?int
+    {
+        return $this->quantity;
+    }
+
+    public function setQuantity(?int $quantity): self
+    {
+        $this->quantity = $quantity;
+
+        return $this;
+    }
+
 
 }
