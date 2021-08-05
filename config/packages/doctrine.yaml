@@ -1,6 +1,6 @@
 doctrine:
     dbal:
-        default_connection: 'tienda'
+        default_connection: 'default'
         connections:
             default:
                 override_url: true
@@ -13,12 +13,34 @@ doctrine:
         #server_version: '13'
     orm:
         auto_generate_proxy_classes: true
-        naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
-        auto_mapping: true
-        mappings:
-            App:
-                is_bundle: false
-                type: annotation
-                dir: '%kernel.project_dir%/src/Entity'
-                prefix: 'App\Entity'
-                alias: App
+        #auto_mapping: true
+        default_entity_manager: default
+        entity_managers:
+            # Registre qué paquete debe usar qué conexión
+            default:
+                naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
+                connection: default
+                auto_mapping: true
+                mappings:
+                    App:
+                        is_bundle: false
+                        type: annotation
+                        dir: '%kernel.project_dir%/src/Entity'
+                        prefix: 'App\Entity'
+                        alias: App
+                dql:
+                    string_functions:
+                        MATCH_AGAINST: ourcodeworld\Extensions\Doctrine\MatchAgainst
+            tienda:
+                naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
+                connection: tienda
+                mappings:
+                    App:
+                        is_bundle: false
+                        type: annotation
+                        dir: '%kernel.project_dir%/src/Entity'
+                        prefix: 'App\Entity'
+                        alias: App
+                dql:
+                    string_functions:
+                        MATCH_AGAINST: ourcodeworld\Extensions\Doctrine\MatchAgainst
