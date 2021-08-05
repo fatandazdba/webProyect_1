@@ -1,6 +1,6 @@
 doctrine:
     dbal:
-        default_connection: 'default'
+        default_connection: 'tienda'
         connections:
             default:
                 override_url: true
