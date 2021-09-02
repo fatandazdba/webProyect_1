@@ -6,11 +6,19 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\DBAL\Driver\Connection;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 use App\Entity\User;
 
 class UserController extends AbstractController
 {
+    private $userPasswordEncoderInterface;
+
+    public function __construct(UserPasswordEncoderInterface $userPasswordEncoderInterface)
+    {
+        $this->userPasswordEncoderInterface=$userPasswordEncoderInterface;
+    }
+
     /**
      * @Route("/user", name="user")
      */
@@ -18,9 +26,14 @@ class UserController extends AbstractController
     {
         $user = new User();
         $entityManager = $this->getDoctrine()->getManager();
-        $user->setName('freddy');
-        $user->setLastName('tandazo');
-
+        $user->setEmail('freddy.tandazo@fgupm.upm.es_'.date('dd:mm:yy hh:mm:ss'));
+        $user->setRoles(['ROLE_USER']);
+        $user->setPassword($this->userPasswordEncoderInterface->encodePassword(
+                         $user,
+                         'the_new_password'
+                     ));
+        $user->setName('Freddy Alex');
+        $user->setLastName('Tandazo Yanez');
         $entityManager->persist($user);
         $entityManager->flush();
 
