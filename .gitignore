@@ -21,3 +21,8 @@
 .idea/workspace.xml
 .idea/vcs.xml
 /.idea/
+
+###> lexik/jwt-authentication-bundle ###
+/config/jwt/*.pem
+###< lexik/jwt-authentication-bundle ###
+config/packages/lexik_jwt_authentication.yaml
