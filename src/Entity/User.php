@@ -49,6 +49,11 @@ class User implements UserInterface
      */
     private $birthday;
 
+    /**
+     * @ORM\Column(type="string", length=500, nullable=true)
+     */
+    private $token;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -162,6 +167,18 @@ class User implements UserInterface
     public function setBirthday(?\DateTimeInterface $birthday): self
     {
         $this->birthday = $birthday;
+
+        return $this;
+    }
+
+    public function getToken(): ?string
+    {
+        return $this->token;
+    }
+
+    public function setToken(?string $token): self
+    {
+        $this->token = $token;
 
         return $this;
     }
