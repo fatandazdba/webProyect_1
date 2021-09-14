@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserController!{% endblock %}
+
+{% block body %}
+{#    {% for message in app.flashes('Exito') %}
+        <div  class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}#}
+<form>
+    <div class="form-group">
+    {{ form(Register) }}
+    </div>
+</form>
+
+{% endblock %}
