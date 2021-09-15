@@ -81,7 +81,24 @@ class UserApiController extends AbstractController
      */
     public function getTokenUser(User $user, JWTTokenManagerInterface $JWTManager)
     {
-        return $JWTManager->create($user);
+        $token=$JWTManager->create($user);
+        $this->tokenDatos($token);
+        return $token;
+
+    }
+
+    /**
+     * @param $token
+     * Extraer los datos del token
+     */
+    public function tokenDatos($token){
+        $tokenParts = explode(".", $token);
+        $tokenHeader = base64_decode($tokenParts[0]);
+        $tokenPayload = base64_decode($tokenParts[1]);
+        $jwtHeader = json_decode($tokenHeader);
+        $jwtPayload = json_decode($tokenPayload);
+        dump( $jwtPayload->username);
+        dump( $jwtPayload);
     }
 
     /**

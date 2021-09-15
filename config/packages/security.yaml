@@ -82,5 +82,7 @@ security:
         - { path: ^/user,      roles: ROLE_USER }
         - { path: ^/clientes,  roles: ROLE_CLIENTES }
         - { path: ^/create,  roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/create/createAuthenticatedClient,  roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/createAuthenticatedClient,  roles: IS_AUTHENTICATED_ANONYMOUSLY }
         # - { path: '^/api', roles: ROLE_USER_IP, ips: [127.0.0.1, ::1, '%env(TRUSTED_IPS)%'], port: 8080, methods: [POST, PUT] }
     enable_authenticator_manager: true
