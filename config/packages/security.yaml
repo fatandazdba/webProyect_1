@@ -52,7 +52,7 @@ security:
         refresh:
             pattern:  ^/api/token/refresh
             stateless: true
-            anonymous: true
+            #anonymous: true
 
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
