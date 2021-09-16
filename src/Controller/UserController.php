@@ -103,14 +103,11 @@ class UserController extends AbstractController
             //$registro = $request->request->get($form->getName())["registro"];
             //$token = $request->request->get($form->getName())["token"];
 
-
             $entityManager = $this->getDoctrine()->getManager();
             $user->setEmail($email . date('dd:mm:yy hh:mm:ss'));
             $user->setRoles(explode(",", $request->get('roles')));
-            $user->setPassword($this->userPasswordEncoderInterface->encodePassword(
-                $user,
-                $password
-            ));
+            $user->setPassword($this->userPasswordEncoderInterface->encodePassword($user, $password));
+            $user->setRoles(['ROLE_USER']);
             $user->setName($name);
             $user->setLastName($lastName);
             $token = $this->getTokenUser($user, $JWTManager);
@@ -118,7 +115,8 @@ class UserController extends AbstractController
 
             $entityManager->persist($user);
             $entityManager->flush();
-            return $this->redirectToRoute('registroUsuario');
+            //return $this->redirectToRoute('perfil');
+            return $this->render('user/perfil.html.twig', ['controller_name' => 'Perfil del nuevo usuario', "name" => $email]);
         }
         return $this->render('user/registro.html.twig', ['controller_name' => 'Ingresar nuevo usuario', 'formulario' => $form->createView()]);
     }
@@ -130,7 +128,16 @@ class UserController extends AbstractController
      */
     public function getTokenUser(User $user, JWTTokenManagerInterface $JWTManager)
     {
+        //$JWTManager->
         return $JWTManager->create($user);
+    }
+
+    /**
+     * @Route("/perfil", name="perfil")
+     */
+    public function perfil()
+    {
+        return $this->render('user/perfil.html.twig', ['controller_name' => 'Perfil del nuevo usuario']);
     }
 
 }
